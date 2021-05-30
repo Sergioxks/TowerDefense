@@ -5,7 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  m_configObjects: {}
+  - enabled: 1
+    path: Assets/Scenes/ArTesting.unity
+    guid: 9cdba66a0dabffd4087da6e8d888df16
+  m_configObjects:
+    UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: cecdf9921c9dd484ea9d55c98348f3f4,
+      type: 2}
+    com.unity.xr.arcore.PlayerSettings: {fileID: 11400000, guid: 6b7757f39e1bc164face86fe18fde223,
+      type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 3be17739c48353048883710e4afde752,
+      type: 2}
