@@ -8,6 +8,8 @@ TagManager:
   - Spawner
   - Enemy
   - Game
+  - UI
+  - HealthBar
   layers:
   - Default
   - TransparentFX
