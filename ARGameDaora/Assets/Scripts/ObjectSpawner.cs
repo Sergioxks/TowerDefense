@@ -29,6 +29,7 @@ public class ObjectSpawner : MonoBehaviour
         if (GameObject.FindGameObjectWithTag("Game"))
         {
             canPlace = false;
+            placementIndicator.hidePlacement();
         }
 
     }
