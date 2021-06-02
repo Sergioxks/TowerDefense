@@ -10,6 +10,7 @@ TagManager:
   - Game
   - UI
   - HealthBar
+  - PortalSpawnLocation
   layers:
   - Default
   - TransparentFX
