@@ -9,28 +9,53 @@ public class WaveManagerScript : MonoBehaviour
     public GameObject m_ObjectSpawner;
     public GameObject[] m_SpawnLocations;
 
+    public List<GameObject> l_ActivePortals = new List<GameObject>();
+
+    public SpawnEnemies m_SpawnEnemiesScript;
+
     public int killCount, waveLeft, waveCount, portalCount;
+    public float enemyTimerNext = 5f;
 
     void Awake()
     {
         waveCount = 1;
         killCount = 0;
         portalCount = 0;
+        waveLeft = 99;
 
         m_SpawnLocations = GameObject.FindGameObjectsWithTag("PortalSpawnLocation");
+        m_ObjectSpawner = GameObject.FindGameObjectWithTag("Spawner");
+        m_SpawnEnemiesScript = GameObject.FindGameObjectWithTag("WaveManager").GetComponent<SpawnEnemies>();
     }
 
     void Start()
     {
-
+        l_ActivePortals.Add(m_ObjectSpawner as GameObject);
     }
 
     void Update()
     {
-
-        if(portalCount < 10)
+        if(enemyTimerNext > 0)
         {
-            SpawnPortal();
+            enemyTimerNext -= Time.deltaTime;
+        }
+        else
+        {
+            if (portalCount < 3)
+            {
+                SpawnPortal();
+            }
+
+            if (waveLeft > 0)
+            {
+                foreach (GameObject portal in l_ActivePortals)
+                {
+                    m_SpawnEnemiesScript.SpawnEnemy(portal);
+                    waveLeft--;
+                }
+            }
+
+            enemyTimerNext = 5f;
         }
         
     }
@@ -46,9 +71,11 @@ public class WaveManagerScript : MonoBehaviour
         };
     }
 
-    public void SpawnPortal()
+    void SpawnPortal()
     {
         var chooseSpawn = (Random.Range(0, m_SpawnLocations.Length - 1));
+
+        Debug.Log("gamer");
 
         while(!m_SpawnLocations[chooseSpawn].GetComponent<SpawnLocationScript>().locationAvailable)
         {
@@ -58,6 +85,7 @@ public class WaveManagerScript : MonoBehaviour
         GameObject obj = Instantiate(m_ObjectSpawner, m_SpawnLocations[chooseSpawn].transform.position, Quaternion.identity);
         m_SpawnLocations[chooseSpawn].GetComponent<SpawnLocationScript>().locationAvailable = false;
 
+        l_ActivePortals.Add(obj as GameObject);
         portalCount++;
     }
 }

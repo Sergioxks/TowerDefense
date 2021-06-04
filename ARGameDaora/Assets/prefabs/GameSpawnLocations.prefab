@@ -583,7 +583,7 @@ GameObject:
   - component: {fileID: 2132447140}
   - component: {fileID: 2132447141}
   m_Layer: 0
-  m_Name: SpawnLocations
+  m_Name: WaveManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -645,7 +645,7 @@ PrefabInstance:
     - target: {fileID: 5801631013778501326, guid: 66be0403fd965d84faa2faf522429d28,
         type: 3}
       propertyPath: m_Name
-      value: Game
+      value: GameSpawnLocations
       objectReference: {fileID: 0}
     - target: {fileID: 5801631013778501329, guid: 66be0403fd965d84faa2faf522429d28,
         type: 3}
