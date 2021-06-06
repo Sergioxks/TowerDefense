@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class WaveManagerScript : MonoBehaviour
 {
-    private const float NEXT_WAVE_TIMER_MAX = 10f;
+    private const float ENEMY_TIMER_NEXT_MAX = 5f;
+    private const float WAVE_TIMER_NEXT_MAX = 10f;
 
     public GameObject m_ObjectSpawner;
     public GameObject[] m_SpawnLocations;
@@ -14,14 +17,24 @@ public class WaveManagerScript : MonoBehaviour
     public SpawnEnemies m_SpawnEnemiesScript;
 
     public int killCount, waveLeft, waveCount, portalCount;
-    public float enemyTimerNext = 5f;
+    public float enemyTimerNext, waveTimerNext;
+
+    public TMP_Text waveCountdown;
+
+    //debugging
+    public Text waveCountText, waveLeftText, portalCountText, waveTimerText, enemyTimerText;
 
     void Awake()
     {
         waveCount = 1;
         killCount = 0;
-        portalCount = 0;
-        waveLeft = 99;
+        portalCount = 1;
+        waveLeft = 5;
+        waveTimerNext = WAVE_TIMER_NEXT_MAX;
+        enemyTimerNext = 0f;
+
+        //waveCountdown.faceColor = new Color32(255, 255, 255, 0);
+        waveCountdown.enabled = false;
 
         m_SpawnLocations = GameObject.FindGameObjectsWithTag("PortalSpawnLocation");
         m_ObjectSpawner = GameObject.FindGameObjectWithTag("Spawner");
@@ -35,29 +48,66 @@ public class WaveManagerScript : MonoBehaviour
 
     void Update()
     {
-        if(enemyTimerNext > 0)
+        //debugging
+        waveCountText.text = "Wave: " + waveCount.ToString();
+        waveLeftText.text = "EnemiesLeft: " +  waveLeft.ToString();
+        portalCountText.text = "Portals: " +  portalCount.ToString();
+        waveTimerText.text = "NextWave: " + waveTimerNext.ToString();
+        enemyTimerText.text = "NextEnemy: " + enemyTimerNext.ToString();
+        //gaming
+
+        if (waveTimerNext > 0)
         {
-            enemyTimerNext -= Time.deltaTime;
+            waveTimerNext -= Time.deltaTime;
+
+            if(waveTimerNext < 6 && waveTimerNext > 1)
+            {
+                waveCountdown.enabled = true;
+                waveCountdown.text = Mathf.Floor(waveTimerNext).ToString();
+            }
+            else if(waveTimerNext < 1)
+            {
+                waveCountdown.text = "Begin!";
+            }
+            
         }
         else
         {
-            if (portalCount < 3)
+            waveCountdown.enabled = false;
+
+            if (waveCount % 5 == 0 && portalCount < (Mathf.Floor(waveCount/5) + 1) && portalCount < 10)
             {
                 SpawnPortal();
             }
 
-            if (waveLeft > 0)
+            if(enemyTimerNext > 0)
             {
-                foreach (GameObject portal in l_ActivePortals)
+                enemyTimerNext -= Time.deltaTime;
+            }
+            else
+            {
+                if(waveLeft > 0)
                 {
-                    m_SpawnEnemiesScript.SpawnEnemy(portal);
-                    waveLeft--;
+                    foreach (GameObject portal in l_ActivePortals)
+                    {
+                        if(waveLeft > 0)
+                        {
+                            m_SpawnEnemiesScript.SpawnEnemy(portal);
+                            waveLeft--;
+                        }
+                       
+                    }
+                    enemyTimerNext = ENEMY_TIMER_NEXT_MAX * portalCount;
+                }
+                else
+                {
+                    waveTimerNext = WAVE_TIMER_NEXT_MAX;
+                    enemyTimerNext = 0;
+                    waveCount++;
+                    waveLeft = (2 * waveCount) + 3;
                 }
             }
-
-            enemyTimerNext = 5f;
-        }
-        
+        }      
     }
 
     //Debugging the spawn areas
