@@ -4,14 +4,18 @@ using UnityEngine;
 using System.Linq;
 public class SpawnEnemys : MonoBehaviour
 {
-    public GameObject spawnLocation;
     public GameObject enemy;
+    public WaveManagerScript m_WaveManagerScript;
 
-    public float timeBetweenWaves = 40f;
-
-
-    private void Start()
+    void Start()
     {
-        GameObject obj = Instantiate(enemy, spawnLocation.transform.position, Quaternion.identity);
+        //enemy = GameObject.FindGameObjectWithTag("Enemy");
+        m_WaveManagerScript = GameObject.FindGameObjectWithTag("WaveManager").GetComponent<WaveManagerScript>();
+    }
+
+    public void SpawnEnemy(GameObject portal)
+    {
+        GameObject obj = (GameObject)Instantiate(enemy, portal.transform.position, Quaternion.identity, transform);
+        obj.transform.Rotate(new Vector3(270f, 90f, 0f));
     }
 }

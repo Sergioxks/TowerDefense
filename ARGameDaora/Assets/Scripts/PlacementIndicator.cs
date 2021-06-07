@@ -6,6 +6,7 @@ using UnityEngine.XR.ARSubsystems;
 public class PlacementIndicator : MonoBehaviour
 {
     private ARRaycastManager rayManager;
+    public ARPlaneManager planeManager;
     private GameObject visual;
     bool canPlace=true;
 
@@ -36,5 +37,10 @@ public class PlacementIndicator : MonoBehaviour
     public void hidePlacement()
     {
         visual.SetActive(false);
+        planeManager.enabled = false;
+        foreach(var planes in planeManager.trackables)
+        {
+            planes.gameObject.SetActive(false);
+        }
     }
 }

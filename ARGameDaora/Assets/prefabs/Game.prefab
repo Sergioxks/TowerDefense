@@ -136,7 +136,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnLocation: {fileID: 500584028477652799}
   enemy: {fileID: 2014779106482057208, guid: e31d66a5aa9cc3541a2fad6cc43ba366, type: 3}
-  timeBetweenWaves: 5
+  fireRate: 3
 --- !u!1 &5801631013778501326
 GameObject:
   m_ObjectHideFlags: 0
