@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpawnEnemies : MonoBehaviour
 {
-    public GameObject enemy;
+    public GameObject[] enemy;
     public WaveManagerScript m_WaveManagerScript;
 
     void Start()
@@ -13,8 +13,9 @@ public class SpawnEnemies : MonoBehaviour
         m_WaveManagerScript = GameObject.FindGameObjectWithTag("WaveManager").GetComponent<WaveManagerScript>();
     }
 
-    public void SpawnEnemy(GameObject portal)
+    public void SpawnEnemy(GameObject portal, int type)
     {
-        GameObject obj = Instantiate(enemy, portal.transform.position, Quaternion.identity);
+        GameObject obj = (GameObject)Instantiate(enemy[type], portal.transform.position, Quaternion.identity, transform);
+        obj.transform.Rotate(new Vector3(270f, 90f, 0f));
     }
 }

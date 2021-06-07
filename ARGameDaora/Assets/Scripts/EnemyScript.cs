@@ -10,6 +10,7 @@ public class EnemyScript : MonoBehaviour
     public float MoveSpeed = 0.2f;
     int MaxDist = 0;
     int MinDist = 0;
+    public bool boss;
 
     public float maxLife = 40f;
     private float currentLife = 40f;
@@ -32,7 +33,15 @@ public class EnemyScript : MonoBehaviour
         {
 
             transform.position += transform.forward * MoveSpeed * Time.deltaTime;
-            transform.Rotate(new Vector3(270f, -90f, 0f), Space.Self);
+            if (!boss)
+            {
+                transform.Rotate(new Vector3(270f, -90f, 0f), Space.Self);
+            }
+            if (boss)
+            {
+                transform.Rotate(new Vector3(131f, 360f, 180f), Space.Self);
+            }
+
 
         }
 
@@ -60,7 +69,15 @@ public class EnemyScript : MonoBehaviour
     {
         if (other.gameObject.tag == "City")
         {
-            m_HealthBar.TakeDamage(10f);
+            if (boss)
+            {
+                m_HealthBar.TakeDamage(20f);
+            }
+            else
+            {
+                m_HealthBar.TakeDamage(10f);
+            }
+           
 
             Debug.Log("This is your fault");
             Destroy(gameObject);

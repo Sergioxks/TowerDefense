@@ -9,7 +9,7 @@ public class WaveManagerScript : MonoBehaviour
     private const float ENEMY_TIMER_NEXT_MAX = 6f;
     private const float WAVE_TIMER_NEXT_MAX = 10f;
 
-    public GameObject m_ObjectSpawner, city;
+    public GameObject m_ObjectSpawner, city,firstSpawner;
     public GameObject[] m_SpawnLocations;
 
     public List<GameObject> l_ActivePortals = new List<GameObject>();
@@ -23,6 +23,9 @@ public class WaveManagerScript : MonoBehaviour
 
     //debugging
     public Text waveCountText, waveLeftText, portalCountText, waveTimerText, enemyTimerText;
+    private bool bossSpawned;
+
+
 
     void Awake()
     {
@@ -42,15 +45,17 @@ public class WaveManagerScript : MonoBehaviour
 
         //waveCountdown.faceColor = new Color32(255, 255, 255, 0);
         waveCountdown.enabled = false;
+       
 
         city = GameObject.FindGameObjectWithTag("City");
         m_SpawnLocations = GameObject.FindGameObjectsWithTag("PortalSpawnLocation");
+        firstSpawner = GameObject.FindGameObjectWithTag("Spawner");
         m_SpawnEnemiesScript = GameObject.FindGameObjectWithTag("WaveManager").GetComponent<SpawnEnemies>();
     }
 
     void Start()
     {
-        l_ActivePortals.Add(m_ObjectSpawner as GameObject);
+        l_ActivePortals.Add(firstSpawner as GameObject);
     }
 
     void Update()
@@ -99,12 +104,18 @@ public class WaveManagerScript : MonoBehaviour
                     {
                         if(waveLeft > 0)
                         {
-                            m_SpawnEnemiesScript.SpawnEnemy(portal);
+                            if(waveCount % 10 == 0 && bossSpawned==false)
+                            {
+                                m_SpawnEnemiesScript.SpawnEnemy(portal, 1);
+                                bossSpawned =true;
+                            }
+                            m_SpawnEnemiesScript.SpawnEnemy(portal,0);
                             waveLeft--;
                         }
                        
                     }
                     enemyTimerNext = ENEMY_TIMER_NEXT_MAX * portalCount;
+                    bossSpawned = false;
                 }
                 else
                 {

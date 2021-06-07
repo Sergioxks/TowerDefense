@@ -44,7 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55455d84ec98a424d8e0c8b7cb388540, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 1786581638829350074, guid: 58294c163d735a84db07bfa674b00946, type: 3}
+  enemy:
+  - {fileID: 1786581638829350074, guid: 58294c163d735a84db07bfa674b00946, type: 3}
+  - {fileID: 3812533117116314086, guid: 955aa429b5379754a8fc8e6d1811c788, type: 3}
   m_WaveManagerScript: {fileID: 0}
 --- !u!1001 &4446227910389035041
 PrefabInstance:
