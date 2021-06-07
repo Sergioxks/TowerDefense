@@ -6,12 +6,22 @@ public class SpawnEnemys : MonoBehaviour
 {
     public GameObject spawnLocation;
     public GameObject enemy;
+    public float fireRate = 30;
+    private float nextFire = 0;
 
-    public float timeBetweenWaves = 40f;
 
 
     private void Start()
     {
         GameObject obj = Instantiate(enemy, spawnLocation.transform.position, Quaternion.identity);
+    }
+
+    private void Update()
+    {
+        if (Time.time >= nextFire)
+        {
+            nextFire = Time.time + fireRate;
+            GameObject obj = Instantiate(enemy, spawnLocation.transform.position, Quaternion.identity);
+        }
     }
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyScript : MonoBehaviour
 {
     public GameObject Player;
+    public float life=40.0f;
     public float MoveSpeed = 0.1f;
     int MaxDist = 0;
     int MinDist = 0;
@@ -26,6 +27,21 @@ public class EnemyScript : MonoBehaviour
             transform.position += transform.forward * MoveSpeed * Time.deltaTime;
 
         }
+    }
+
+    public void TakeDamage(float damageAmount)
+    {
+        life -= damageAmount;
+
+        if (life <= 0)
+        {
+            EnemyDie();
+        }
+    }
+
+    void EnemyDie()
+    {
+        Destroy(gameObject);
     }
 
 }

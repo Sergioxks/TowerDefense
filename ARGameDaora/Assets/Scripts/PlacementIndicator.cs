@@ -7,6 +7,7 @@ public class PlacementIndicator : MonoBehaviour
 {
     private ARRaycastManager rayManager;
     private GameObject visual;
+    public GameObject planeVisualizer;
     bool canPlace=true;
 
     private void Start()
@@ -36,5 +37,6 @@ public class PlacementIndicator : MonoBehaviour
     public void hidePlacement()
     {
         visual.SetActive(false);
+        planeVisualizer.SetActive(false);
     }
 }
