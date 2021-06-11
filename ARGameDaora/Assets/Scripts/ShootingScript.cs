@@ -24,7 +24,15 @@ public class ShootingScript : MonoBehaviour
             GameObject m_MuzzleInstance = Instantiate(muzzleFlash, pos.transform.position, Quaternion.identity);
             nextFire = Time.time + 1f / fireRate;
             RaycastHit hit;
-            Handheld.Vibrate();
+            if((PlayerPrefs.GetInt("_Vibration") == 1 ? true : false) == true)
+            {
+                Debug.Log("Vibrou");
+                Handheld.Vibrate();
+            }
+            else
+            {
+                Debug.Log("Não vibrou");
+            }
             if (Physics.Raycast(arCamera.transform.position, arCamera.transform.forward, out hit, range))
             {
                 if (hit.transform.tag == "Enemy")

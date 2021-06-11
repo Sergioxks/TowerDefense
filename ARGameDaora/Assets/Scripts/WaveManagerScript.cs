@@ -29,6 +29,11 @@ public class WaveManagerScript : MonoBehaviour
 
     void Awake()
     {
+        
+    }
+
+    void Start()
+    {
         waveCountText = GameObject.Find("WaveCount").GetComponent<Text>();
         waveLeftText = GameObject.Find("WaveLeft").GetComponent<Text>();
         portalCountText = GameObject.Find("PortalCount").GetComponent<Text>();
@@ -45,16 +50,12 @@ public class WaveManagerScript : MonoBehaviour
 
         //waveCountdown.faceColor = new Color32(255, 255, 255, 0);
         waveCountdown.enabled = false;
-       
+
 
         city = GameObject.FindGameObjectWithTag("City");
         m_SpawnLocations = GameObject.FindGameObjectsWithTag("PortalSpawnLocation");
         firstSpawner = GameObject.FindGameObjectWithTag("Spawner");
         m_SpawnEnemiesScript = GameObject.FindGameObjectWithTag("WaveManager").GetComponent<SpawnEnemies>();
-    }
-
-    void Start()
-    {
         l_ActivePortals.Add(firstSpawner as GameObject);
     }
 
@@ -64,8 +65,8 @@ public class WaveManagerScript : MonoBehaviour
         waveCountText.text = "Wave: " + waveCount.ToString();
         waveLeftText.text = "EnemiesLeft: " +  waveLeft.ToString();
         portalCountText.text = "Portals: " +  portalCount.ToString();
-        waveTimerText.text = "NextWave: " + waveTimerNext.ToString();
-        enemyTimerText.text = "NextEnemy: " + enemyTimerNext.ToString();
+        waveTimerText.text = "NextWave: " + Mathf.Floor(waveTimerNext).ToString();
+        enemyTimerText.text = "NextEnemy: " + Mathf.Floor(enemyTimerNext).ToString();
         //gaming
 
         if (waveTimerNext > 0)
@@ -80,6 +81,7 @@ public class WaveManagerScript : MonoBehaviour
             else if(waveTimerNext < 1)
             {
                 waveCountdown.text = "Begin!";
+                PlayerPrefs.SetInt("_WavesSurvived", waveCount);
             }
             
         }
@@ -104,7 +106,7 @@ public class WaveManagerScript : MonoBehaviour
                     {
                         if(waveLeft > 0)
                         {
-                            if(waveCount % 10 == 0 && bossSpawned==false)
+                            if(waveCount % 3 == 0 && bossSpawned==false)
                             {
                                 m_SpawnEnemiesScript.SpawnEnemy(portal, 1);
                                 bossSpawned =true;

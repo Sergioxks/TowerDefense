@@ -56,6 +56,7 @@ public class EnemyScript : MonoBehaviour
         UpdateUI();
         if (currentLife <= 0)
         {
+            PlayerPrefs.SetInt("_ShipsDestroyed",PlayerPrefs.GetInt("_ShipsDestroyed")+1);
             Destroy(gameObject);
         }
     }

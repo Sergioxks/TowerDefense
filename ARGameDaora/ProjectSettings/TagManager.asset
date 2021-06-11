@@ -8,6 +8,11 @@ TagManager:
   - Spawner
   - Enemy
   - Game
+  - WaveManager
+  - PortalSpawnLocation
+  - UI
+  - HealthBar
+  - DontDestroy
   layers:
   - Default
   - TransparentFX
@@ -17,7 +22,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - LoadingItem
   - 
   - 
   - 

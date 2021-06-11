@@ -6,8 +6,23 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/ArTesting.unity
+    path: Assets/Scenes/Menu.unity
+    guid: 079cb2f9d4f5ceb4a8e0abb27d5f0dcd
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: cfc51c4ba1cb75e49b4f5fbbfdf4708f
+  - enabled: 1
+    path: Assets/Scenes/Config.unity
+    guid: b0a27a5940207f0468bf527ed9185be9
+  - enabled: 1
+    path: Assets/Scenes/Tutorial.unity
+    guid: 26c3d0584f518fa4f9dc3cdd79d32bf3
+  - enabled: 1
+    path: Assets/Scenes/Game.unity
     guid: 9cdba66a0dabffd4087da6e8d888df16
+  - enabled: 1
+    path: Assets/Scenes/GameOver.unity
+    guid: a2aa65c2b99caaf4cbd5437960b2af75
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: cecdf9921c9dd484ea9d55c98348f3f4,
       type: 2}

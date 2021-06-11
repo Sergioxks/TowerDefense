@@ -7,11 +7,11 @@ using UnityEngine.UI;
 public class HealthBarManager : MonoBehaviour
 {
     private const float DAMAGE_FADE_TIMER_MAX = 1f;
-
+    private ScreenManager loading;
     [Header("Status")]
     public float m_MaxHealth = 100.0f;
     public float m_CurrentHealth = 100.0f;
-
+    
     [Header("UI")]
     public Image m_FillBar;
     public Image m_damagedBar;
@@ -48,6 +48,12 @@ public class HealthBarManager : MonoBehaviour
 
         m_CurrentHealth -= hit;
         m_CurrentHealth = Mathf.Clamp(m_CurrentHealth, 0.0f, m_MaxHealth);
+
+        if (m_CurrentHealth <= 0)
+        {
+            loading = GameObject.Find("Manager").GetComponent<ScreenManager>();
+            loading.LoadLevelLoading("GameOver");
+        }
         UpdateUI();
     }
 
