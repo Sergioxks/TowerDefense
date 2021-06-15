@@ -34,8 +34,9 @@ public class WaveManagerScript : MonoBehaviour
 
     void Start()
     {
-        waveCountText = GameObject.Find("WaveCount").GetComponent<Text>();
+
         waveLeftText = GameObject.Find("WaveLeft").GetComponent<Text>();
+        waveCountText = GameObject.Find("WaveCount").GetComponent<Text>();
         portalCountText = GameObject.Find("PortalCount").GetComponent<Text>();
         waveTimerText = GameObject.Find("WaveTimerNext").GetComponent<Text>();
         enemyTimerText = GameObject.Find("EnemyTimerNext").GetComponent<Text>();

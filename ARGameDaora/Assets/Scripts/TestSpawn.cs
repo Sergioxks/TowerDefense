@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TestSpawn : MonoBehaviour
 {
-    public GameObject spawn;
+    public GameObject spawn, canvasJerso;
     public GameObject pos;
     // Update is called once per frame
     void Update()
@@ -12,6 +12,7 @@ public class TestSpawn : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             GameObject obj = Instantiate(spawn, pos.transform.position, Quaternion.identity);
+            canvasJerso.SetActive(true);
         }
         
     }

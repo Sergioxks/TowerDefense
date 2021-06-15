@@ -564,6 +564,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawn: {fileID: 7384535416842564188, guid: caa55a179029d9a499cc15df1f6bfa55, type: 3}
+  canvasJerso: {fileID: 2006046662}
   pos: {fileID: 554944280}
 --- !u!4 &206900621
 Transform:
@@ -2126,7 +2127,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 839722210}
         m_MethodName: SetSfxLevel
-        m_Mode: 4
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3340,7 +3341,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 839722210}
         m_MethodName: SetVibration
-        m_Mode: 6
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3441,7 +3442,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 839722210}
         m_MethodName: SetMusicLevel
-        m_Mode: 4
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4010,6 +4011,7 @@ MonoBehaviour:
     type: 3}
   canvasGame: {fileID: 712268688}
   canvasJerso: {fileID: 2006046662}
+  planeManager: {fileID: 0}
 --- !u!4 &1654921181
 Transform:
   m_ObjectHideFlags: 0
@@ -4512,7 +4514,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PlanePrefab: {fileID: 7172941148706588153, guid: 3a0703262db7f2946b2cad6bbadb5536,
     type: 3}
-  m_DetectionMode: 1
+  m_DetectionMode: -1
 --- !u!114 &1901750301
 MonoBehaviour:
   m_ObjectHideFlags: 0

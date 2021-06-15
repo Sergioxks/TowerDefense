@@ -4,15 +4,23 @@ using UnityEngine;
 
 public class StartMusicMenu : MonoBehaviour
 {
-    public AudioSource menuMusic;
-    // Start is called before the first frame update
-    void Start()
+    private static StartMusicMenu instance = null;
+    public static StartMusicMenu Instance
     {
-        if (!menuMusic.isPlaying)
-        {
-            menuMusic.Play();
-        }
-        
+        get { return instance; }
     }
-
+    void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+        else
+        {
+            instance = this;
+        }
+        DontDestroyOnLoad(this.gameObject);
+    }
+    // any other methods you need
 }
